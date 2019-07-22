@@ -8,9 +8,9 @@ const MockResponse = require('./fixtures/mock_response');
 const medianPrimeService = require('../../services/primeNumbers');
 const medianController = require('../../controllers/medianPrime');
 
-const { MISSING_PARAM_ERROR, PARAM_NOT_INT_ERROR, PARAM_NEGATIVE_ZERO_ERROR, PARAM_VALUE_1 } = require('../../constants')
+const { MISSING_PARAM_ERROR, PARAM_NOT_INT_ERROR, PARAM_NEGATIVE_ZERO_ERROR, PARAM_VALUE_GT2 } = require('../../constants')
 
-describe.only('Controller Tests:', () => {
+describe('Controller Tests:', () => {
     let apiRequest;
     let apiResponse;
     let controllerResult;
@@ -89,7 +89,7 @@ describe.only('Controller Tests:', () => {
         });
         it('should return 400 if num is positive but value is 1', () => controllerResult.then(() => {
             expect(resSpy.firstCall.args[0].status).to.equal(400);
-            expect(resSpy.firstCall.args[0].description).to.equal(PARAM_VALUE_1);
+            expect(resSpy.firstCall.args[0].description).to.equal(PARAM_VALUE_GT2);
         }));
     });
 

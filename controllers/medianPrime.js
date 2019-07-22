@@ -3,7 +3,7 @@ const { isInt } = require('../utils');
 const { MISSING_PARAM_ERROR,
     PARAM_NOT_INT_ERROR,
     PARAM_NEGATIVE_ZERO_ERROR,
-    PARAM_VALUE_1 } = require('../constants');
+    PARAM_VALUE_GT2 } = require('../constants');
 
 const medianprime = (req, res, next) => {
     const { num } = req.query;
@@ -29,10 +29,10 @@ const medianprime = (req, res, next) => {
         }));
     }
 
-    if(num == 1) {
+    if(num < 3) {
         return Promise.resolve(res.status(400).json({
             status: 400,
-            description: PARAM_VALUE_1
+            description: PARAM_VALUE_GT2
         }));
     }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import { PARAM_VALUE_GT2 } from '../../constants';
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class App extends Component {
     this.setState({ error: ''});
     let self = this;
 
-    if(self.state.value) {
+    if(self.state.value && self.state.value > 2) {
       axios.get('http://localhost:3000/medianPrime', {
         params: {
           num: this.state.value
@@ -37,6 +38,8 @@ class App extends Component {
         console.log(err.response.data.status);
         self.setState({ error: `Error: ${err.response.data.description}` });
       });
+    } else {
+      self.setState({ error: `Error: ${PARAM_VALUE_GT2}` });
     }
   }
 
