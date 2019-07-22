@@ -8,7 +8,9 @@ const MockResponse = require('./fixtures/mock_response');
 const medianPrimeService = require('../../services/primeNumbers');
 const medianController = require('../../controllers/medianPrime');
 
-describe('Controller Tests:', () => {
+const { MISSING_PARAM_ERROR, PARAM_NOT_INT_ERROR, PARAM_NEGATIVE_ZERO_ERROR, PARAM_VALUE_1 } = require('../../constants')
+
+describe.only('Controller Tests:', () => {
     let apiRequest;
     let apiResponse;
     let controllerResult;
@@ -35,6 +37,7 @@ describe('Controller Tests:', () => {
         });
         it('should return 400 if num is not provided in the request', () => controllerResult.then(() => {
             expect(resSpy.firstCall.args[0].status).to.equal(400);
+            expect(resSpy.firstCall.args[0].description).to.equal(MISSING_PARAM_ERROR);
         }));
     });
 
@@ -47,6 +50,7 @@ describe('Controller Tests:', () => {
         });
         it('should return 400 if num is empty', () => controllerResult.then(() => {
             expect(resSpy.firstCall.args[0].status).to.equal(400);
+            expect(resSpy.firstCall.args[0].description).to.equal(MISSING_PARAM_ERROR);
         }));
     });
 
@@ -59,6 +63,7 @@ describe('Controller Tests:', () => {
         });
         it('should return 400 if num is not an integer', () => controllerResult.then(() => {
             expect(resSpy.firstCall.args[0].status).to.equal(400);
+            expect(resSpy.firstCall.args[0].description).to.equal(PARAM_NOT_INT_ERROR);
         }));
     });
 
@@ -71,18 +76,20 @@ describe('Controller Tests:', () => {
         });
         it('should return 400 if num is negative no.', () => controllerResult.then(() => {
             expect(resSpy.firstCall.args[0].status).to.equal(400);
+            expect(resSpy.firstCall.args[0].description).to.equal(PARAM_NEGATIVE_ZERO_ERROR);
         }));
     });
 
     context('Prime Numbers Median when num is positive but value is 1', () => {
         beforeEach(() => {
-            apiRequest = { query: { num: -6 } };
+            apiRequest = { query: { num: 1 } };
             apiResponse = new MockResponse(resSpy);
         
             controllerResult = medianController(apiRequest, apiResponse);
         });
         it('should return 400 if num is positive but value is 1', () => controllerResult.then(() => {
             expect(resSpy.firstCall.args[0].status).to.equal(400);
+            expect(resSpy.firstCall.args[0].description).to.equal(PARAM_VALUE_1);
         }));
     });
 
