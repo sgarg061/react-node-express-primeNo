@@ -19,6 +19,10 @@ To run backend test suite run **npm test** in the root directory
 
 To run frontend test suite run **CI=true npm test** in the **/views** directory
 
+## Endpoint
+
+GET **/medianprime**?num=10 
+
 
 ## Directory Structure
 
