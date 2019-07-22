@@ -44,8 +44,8 @@ class App extends Component {
     return (
       <div className="App">
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-          <input type="submit" value="Submit" />
+          <input type="text" className="numVal" value={this.state.value} onChange={this.handleChange} />
+          <input type="submit" className="submitBtn" value="Submit" />
         </form>
         <p>{this.state.error || this.state.result}</p>
       </div>
