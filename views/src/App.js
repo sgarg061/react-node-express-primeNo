@@ -24,7 +24,7 @@ class App extends Component {
     let self = this;
 
     if(self.state.value) {
-      axios.get('http://localhost:3000/medianprime', {
+      axios.get('http://localhost:3000/medianPrime', {
         params: {
           num: this.state.value
         }
