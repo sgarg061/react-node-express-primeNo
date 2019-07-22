@@ -14,6 +14,13 @@ To setup the frontend react app browse to **/views** and run below command:
 npm install
 ```
 
+## Run the server
+
+To run backend server run command **npm start** in the root directory
+
+To run frontend app run command **npm start** in the **/views** directory
+
+
 ## Tests
 To run backend test suite run **npm test** in the root directory
 
